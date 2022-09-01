@@ -6,9 +6,9 @@ afterEach(cleanup);
 
 test('Initializes empty form', () => {
   render(<ContactModal />);
-  const nameInput = screen.queryAllByPlaceholderText('Name');
-  const emailInput = screen.queryAllByPlaceholderText('Email');
-  const phoneInput = screen.queryAllByPlaceholderText('Phone');
+  const nameInput = screen.queryByPlaceholderText('Name');
+  const emailInput = screen.queryByPlaceholderText('Email');
+  const phoneInput = screen.queryByPlaceholderText('Phone');
 
   expect(nameInput).toBeInTheDocument();
   expect(emailInput).toBeInTheDocument();
