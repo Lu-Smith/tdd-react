@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 const ContactModal = () => {
 
@@ -6,13 +6,31 @@ const ContactModal = () => {
     const [phone, setPhone] = useState('');
     const [email, setEmail] = useState('');
 
+    const [isValiid, setIsValid] = useState(false);
+
+    // useEffect(() => {
+
+    // }, []);
+
   return (
     <div className='ContactModal'>
         <form>
-          <input required value={name} placeholder='Name' onChange={(e) => setName(e.target.value)}/>
-          <input required value={phone} placeholder='Phone' onChange={(e) => setPhone(e.target.value)}/>
-          <input required value={email} placeholder='Email' onChange={(e) => setEmail(e.target.value)}/>
-          <button>Submit</button>
+          <input 
+             required 
+             value={name} 
+             placeholder='Name' 
+             onChange={(e) => setName(e.target.value)}/>
+          <input 
+             required 
+             value={phone} 
+             placeholder='Phone' 
+             onChange={(e) => setPhone(e.target.value)}/>
+          <input 
+             required 
+             value={email} 
+             placeholder='Email' 
+             onChange={(e) => setEmail(e.target.value)}/>
+          <button disabled={!isValiid}>Submit</button>
         </form>
     </div>
   )
