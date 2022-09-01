@@ -10,6 +10,8 @@ test('Initializes empty form', () => {
   const emailInput = screen.queryByPlaceholderText('Email');
   const phoneInput = screen.queryByPlaceholderText('Phone');
 
+  const submitButton = screen.getByText('Submit');
+
   expect(nameInput).toBeInTheDocument();
   expect(emailInput).toBeInTheDocument();
   expect(phoneInput).toBeInTheDocument();
@@ -17,4 +19,11 @@ test('Initializes empty form', () => {
   expect(nameInput).toHaveValue('');
   expect(emailInput).toHaveValue('');
   expect(phoneInput).toHaveValue('');
+
+  expect(submitButton).toBeDisabled();
+});
+
+test('Disables submit button until form is valid', () => {
+  render(<ContactModal />);
+  const submitButton = screen.getByText('Submit');
 });
