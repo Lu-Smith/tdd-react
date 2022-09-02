@@ -9,7 +9,9 @@ const ContactModal = () => {
     const [isValiid, setIsValid] = useState(false);
 
     useEffect(() => {
-      setIsValid(true);
+      setIsValid(
+        !!name && !!phone && !!email
+      );
     }, [name, phone, email]);
 
   return (
