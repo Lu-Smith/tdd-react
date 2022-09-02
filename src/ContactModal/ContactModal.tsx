@@ -9,13 +9,7 @@ const ContactModal = () => {
     const [isValiid, setIsValid] = useState(false);
 
     useEffect(() => {
-      setIsValid(
-        !!name && 
-        !!phone && 
-        !!email && 
-        /^[0-9]{3}-[0-9]{3}-[0-9]{4}$/.test(phone) &&
-        /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)  
-        );
+      setIsValid(true);
     }, [name, phone, email]);
 
   return (

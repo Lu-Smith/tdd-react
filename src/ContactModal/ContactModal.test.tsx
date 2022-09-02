@@ -1,4 +1,3 @@
-import React from 'react';
 import { render, screen, cleanup, fireEvent } from '@testing-library/react';
 import ContactModal from './ContactModal';
 
@@ -32,8 +31,12 @@ test('Disables submit button until form is valid', () => {
   const submitButton = screen.getByText('Submit');
 
   fireEvent.change(nameInput as HTMLElement, {target: { value: 'Port Exe'}});
-  fireEvent.change(emailInput as HTMLElement, {target: { value: '0131 48 58 68'}});
-  fireEvent.change(phoneInput as HTMLElement, {target: { value: 'prtexe@email.com'}});
+  fireEvent.change(emailInput as HTMLElement, {target: { value: '131-463-4568'}});
+  fireEvent.change(phoneInput as HTMLElement, {target: { value: 'prtexe@gmail.com'}});
+
+  expect(nameInput).toHaveValue('Port Exe');
+  expect(emailInput).toHaveValue('131-463-4568');
+  expect(phoneInput).toHaveValue('prtexe@gmail.com');
 
   expect(submitButton).not.toBeDisabled();
 
