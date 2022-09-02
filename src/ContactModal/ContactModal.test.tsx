@@ -22,7 +22,7 @@ test('Initializes empty form', () => {
   expect(submitButton).toBeDisabled();
 });
 
-test('Disables submit button until form is valid', () => {
+test('Enables submit button after form is valid', () => {
   render(<ContactModal />);
   const nameInput = screen.queryByPlaceholderText('Name');
   const emailInput = screen.queryByPlaceholderText('Email');
@@ -31,12 +31,22 @@ test('Disables submit button until form is valid', () => {
   const submitButton = screen.getByText('Submit');
 
   fireEvent.change(nameInput as HTMLElement, {target: { value: 'Port Exe'}});
-  fireEvent.change(emailInput as HTMLElement, {target: { value: '131-463-4568'}});
+  fireEvent.change(emailInput as HTMLElement, {target: { value: ''}});
   fireEvent.change(phoneInput as HTMLElement, {target: { value: 'prtexe@gmail.com'}});
 
   expect(nameInput).toHaveValue('Port Exe');
-  expect(emailInput).toHaveValue('131-463-4568');
+  expect(emailInput).toHaveValue('');
   expect(phoneInput).toHaveValue('prtexe@gmail.com');
+
+  expect(submitButton).toBeDisabled();
+
+  fireEvent.change(nameInput as HTMLElement, {target: { value: 'Adam Smith'}});
+  fireEvent.change(emailInput as HTMLElement, {target: { value: '131-463-3876'}});
+  fireEvent.change(phoneInput as HTMLElement, {target: { value: 'adamsmith@gmail.com'}});
+
+  expect(nameInput).toHaveValue('Adam Smith');
+  expect(emailInput).toHaveValue('131-463-3876');
+  expect(phoneInput).toHaveValue('adamsmith@gmail.com');
 
   expect(submitButton).not.toBeDisabled();
 
